@@ -85,6 +85,7 @@ class ViewSuratTugas extends SuratTugas {
     private $table = "permohonan_izin"; // dalam kelas PermohonanIzin
      
      ```
+     
 ### 4. Membuat kelas turunan menggunakan konsep pewarisan
       Konsep pewarisan diterapkan ketika PermohonanIzin dan SuratTugas mewarisi kelas Database. Keduanya dapat menggunakan koneksi yang telah diinisialisasi di kelas Database tanpa harus mengulangi kode.
       
@@ -105,10 +106,10 @@ class ViewSuratTugas extends SuratTugas {
     // Kode untuk kelas ViewPermohonanIzin
 }
 
-    ```
+```
 
 ### 5. Terapkan polimorfisme untuk minimal 2 peran sesuai studi kasus.
-Polimorfisme diterapkan melalui konsep overriding fungsi yang ada di kelas turunan ViewSuratTugas. Kelas ini mewarisi dari SuratTugas dan memiliki metode yang berbeda seperti displaySuratTugas(), displaySuratTugasLuarKota(), displaySuratTugasLuarNegeri(), dan displaySuratTugasInternal(). Semua metode ini melakukan hal yang sama (menampilkan data surat tugas) tetapi dengan filter atau logika yang berbeda berdasarkan keperluan:
+Polimorfisme diterapkan melalui konsep overriding fungsi yang ada di kelas turunan ViewSuratTugas. Kelas ini mewarisi dari SuratTugas dan memiliki metode yang berbeda seperti displaySuratTugas(), displaySuratTugasLuarKota(), displaySuratTugasLuarNegeri(), dan displaySuratTugasInternal(). Semua metode ini melakukan hal yang sama (menampilkan data surat tugas) tetapi dengan filter atau logika yang berbeda berdasarkan keperluan.
 
 ```php
 public function displaySuratTugasLuarKota() {
@@ -119,5 +120,4 @@ public function displaySuratTugasLuarNegeri() {
     $data = $this->getSuratTugasLuarNegeri();
     // ...
 }
-
 ```
