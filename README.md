@@ -6,6 +6,101 @@ Berikut merupakan tugas 2 praktikum web 2
 
 Tugas-2 adalah sebuah sistem persuratan yang ditulis dalam bahasa PHP, yang digunakan untuk mengelola dan menampilkan data surat tugas dan permohonan izin dosen. Sistem ini terhubung dengan database MySQL dan menggunakan Bootstrap untuk tampilan antarmuka yang responsif dan menarik.
 
+## Penjelasan 
+1. OOP (Object-Oriented Programming)
+   OOP adalah paradigma pemrograman yang berfokus pada penggunaan objek. Dalam OOP, program dibangun menggunakan objek-objek yang berinteraksi satu sama lain untuk menyelesaikan masalah. Setiap objek memiliki atribut (data) dan metode (fungsi) yang merepresentasikan perilaku dan karakteristik objek tersebut.
+
+2.Class (Kelas)
+  Kelas adalah template atau blueprint yang digunakan untuk membuat objek. Kelas mendefinisikan atribut (variabel) dan metode (fungsi) yang dimiliki oleh objek. Dengan kata lain, kelas adalah cetak biru dari objek-objek yang akan dibuat. 
+
+3. Construct
+__construct adalah metode khusus di dalam sebuah kelas yang secara otomatis dipanggil ketika objek dari kelas tersebut dibuat. Biasanya digunakan untuk menginisialisasi nilai-nilai awal atau melakukan tugas tertentu saat objek pertama kali dibuat.
+
+Contoh Penggunaan OOP, CLass, Construct :
+```php
+class SuratTugasController {
+    private $db;
+
+    // Constructor
+    public function __construct($databaseConnection) {
+        $this->db = $databaseConnection;  // Inisialisasi database connection
+    }
+
+    public function buatSuratTugas($dosen, $nip, $jabatan, $alasanIzin, $lamaIzin) {
+        // Logika untuk membuat surat tugas
+    }
+}
+```
+
+Kita sudah punya kelas SuratTugasController dari kode sebelumnya, di mana terdapat class dan construct. Kelas ini menggunakan OOP untuk mengelola surat tugas, dan ada penggunaan constructor untuk inisialisasi.
+- Class: SuratTugasController adalah template atau cetak biru yang mendefinisikan bagaimana surat tugas dikelola.
+- Construct: Metode __construct() digunakan untuk menginisialisasi koneksi database saat objek dibuat.
+
+4. Enkapsulasi (Encapsulation)
+
+Enkapsulasi adalah prinsip dalam OOP di mana atribut atau data dari sebuah objek disembunyikan atau diisolasi dari luar, dan hanya bisa diakses melalui metode yang sudah ditentukan. Ini membantu melindungi data agar tidak diakses atau diubah secara sembarangan.
+
+Untuk mengimplementasikan enkapsulasi, biasanya atribut diberi akses private atau protected, dan akses dilakukan melalui getter dan setter.
+
+Contoh Penggunaan Enkapsulasi :
+```php
+class SuratTugasController {
+    private $db;
+
+    public function __construct($databaseConnection) {
+        $this->db = $databaseConnection;
+    }
+
+    // Getter untuk mendapatkan database
+    public function getDatabase() {
+        return $this->db;
+    }
+    
+    // Setter untuk mengganti database (hanya jika diperlukan)
+    public function setDatabase($databaseConnection) {
+        $this->db = $databaseConnection;
+    }
+}
+```
+Atribut $db pada contoh diatas disembunyikan dengan menggunakan akses private. Data ini tidak bisa diakses langsung dari luar kelas, melainkan hanya melalui metode di dalam kelas. Serta, hanya bisa diakses melalui metode getDatabase() dan setDatabase(), sehingga data tetap aman dan terlindungi dari modifikasi langsung.
+
+  Inheritance adalah kemampuan untuk membuat kelas baru berdasarkan kelas yang sudah ada. Kelas yang mewariskan disebut parent class (kelas induk), dan kelas yang mewarisi disebut child class (kelas turunan). Dengan inheritance, child class dapat menggunakan atau menambahkan properti dan metode dari parent class.
+
+  Contoh Penggunaan Inheritance :
+
+  ```php
+class SuratIzinController extends SuratTugasController {
+    public function buatSuratIzin($dosen, $nip, $jabatan, $alasanIzin, $lamaIzin) {
+        // Logika khusus untuk membuat surat izin
+    }
+}
+
+```
+Kelas SuratIzinController mewarisi semua properti dan metode dari SuratTugasController. Jika diperlukan, kita bisa menambahkan atau menimpa metode di dalamnya.
+
+5. Polimorfisme (Polymorphism)
+
+Polimorfisme adalah konsep di mana satu metode atau fungsi bisa memiliki bentuk yang berbeda di kelas yang berbeda. Dalam OOP, polimorfisme biasanya dicapai dengan cara overriding (menimpa metode dari parent class) dan overloading (memiliki beberapa metode dengan nama yang sama tapi parameter yang berbeda).
+
+Dengan konsep polimorfisme, kita bisa menimpa (override) metode di kelas anak (SuratIzinController) untuk memberikan perilaku yang berbeda, meskipun nama metodenya sama.
+Misalnya, kita akan menimpa metode buatSuratTugas dari SuratTugasController di kelas SuratIzinController agar menghasilkan output yang berbeda.
+
+Contoh Penggunaan Polimorfisme :
+```php
+class SuratIzinController extends SuratTugasController {
+    // Overriding buatSuratTugas
+    public function buatSuratTugas($dosen, $nip, $jabatan, $alasanIzin, $lamaIzin) {
+        echo "Membuat surat tugas khusus untuk surat izin.";
+        // Mungkin logika untuk surat izin berbeda
+    }
+
+    // Metode khusus surat izin
+    public function buatSuratIzin($dosen, $nip, $jabatan, $alasanIzin, $lamaIzin) {
+        // Logika khusus untuk surat izin
+    }
+}
+```
+
 ## Fitur
 
   - Menampilkan daftar surat tugas:
@@ -18,10 +113,11 @@ Tugas-2 adalah sebuah sistem persuratan yang ditulis dalam bahasa PHP, yang digu
   ## Langkah-langkah
  ### 0. Buatlah database yang sesuai dengan ERD yang telah diberikan
     Berikut merupakan ERD yang telah diberikan
-    ![image](https://github.com/user-attachments/assets/ab225503-5e88-49ac-83b1-ca0fa3d9213d)
+   ![image](https://github.com/user-attachments/assets/e092ba36-eed0-4c60-8bf9-f6f7a946a9ec)
 
     dan berikut merupakan Database yang telah dibuat
-    ![image](https://github.com/user-attachments/assets/8e7edb83-590b-4c0e-bcbb-a874b9d476e4)
+   ![image](https://github.com/user-attachments/assets/fe5c9707-6633-4574-b46c-7b79bfbcd754)
+
 
 ###  1. Membuat View berbasis OOP, dengan mengambil data dari database MySQL
      Kelas Database, PermohonanIzin, SuratTugas, ViewSuratTugas, dan ViewPermohonanIzin sudah menerapkan OOP dengan cara yang benar. Data diambil dari database MySQL menggunakan kelas Database untuk koneksi, dan model-model seperti PermohonanIzin dan SuratTugas bertanggung jawab atas pengambilan data.
