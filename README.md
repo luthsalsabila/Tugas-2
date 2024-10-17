@@ -16,14 +16,14 @@ Tugas-2 adalah sebuah sistem persuratan yang ditulis dalam bahasa PHP, yang digu
   - Antarmuka yang responsif dengan Bootstrap.
 
   ## Langkah-langkah
-  0. Buatlah database yang sesuai dengan ERD yang telah diberikan
+ ### 0. Buatlah database yang sesuai dengan ERD yang telah diberikan
     Berikut merupakan ERD yang telah diberikan
     ![image](https://github.com/user-attachments/assets/ab225503-5e88-49ac-83b1-ca0fa3d9213d)
 
     dan berikut merupakan Database yang telah dibuat
     ![image](https://github.com/user-attachments/assets/8e7edb83-590b-4c0e-bcbb-a874b9d476e4)
 
-  1. Membuat View berbasis OOP, dengan mengambil data dari database MySQL
+###  1. Membuat View berbasis OOP, dengan mengambil data dari database MySQL
      Kelas Database, PermohonanIzin, SuratTugas, ViewSuratTugas, dan ViewPermohonanIzin sudah menerapkan OOP dengan cara yang benar. Data diambil dari database MySQL menggunakan kelas Database untuk koneksi, dan model-model seperti PermohonanIzin dan SuratTugas bertanggung jawab atas pengambilan data.
 
   Kelas ViewSuratTugas merupakan view yang dibuat untuk menampilkan data surat tugas.
@@ -56,12 +56,12 @@ class ViewSuratTugas extends SuratTugas {
 }
 
 ```
-    Penjelasannya :
+  #### Penjelasannya :
     1. Kelas ViewSuratTugas merupakan view yang dibuat untuk menampilkan data surat tugas.
     2. Fungsi displaySuratTugas() mengambil data dari metode getAllSuratTugas() yang berasal dari kelas SuratTugas.
     3. Hasil data ditampilkan dalam tabel HTML menggunakan foreach untuk setiap baris yang diambil dari database.
 
-  2. Gunakan _construct sebagai link ke database
+ ### 2. Gunakan _construct sebagai link ke database
      Kelas Database memiliki constructor (__construct) yang digunakan untuk menginisialisasi koneksi ke database MySQL.
     
     ```php
@@ -74,7 +74,7 @@ class ViewSuratTugas extends SuratTugas {
     ```
     
   
-  3.Terapkan enkapsulasi sesuai logika studi kasus
+  ### 3.Terapkan enkapsulasi sesuai logika studi kasus
     Enkapsulasi diterapkan dengan menyembunyikan detail koneksi dan tabel dari luar kelas. Koneksi ke database dan nama tabel dijaga di dalam properti private:
   
      ```php
@@ -85,8 +85,9 @@ class ViewSuratTugas extends SuratTugas {
     private $table = "permohonan_izin"; // dalam kelas PermohonanIzin
      
      ```
-  4. Membuat kelas turunan menggunakan konsep pewarisan
+### 4. Membuat kelas turunan menggunakan konsep pewarisan
       Konsep pewarisan diterapkan ketika PermohonanIzin dan SuratTugas mewarisi kelas Database. Keduanya dapat menggunakan koneksi yang telah diinisialisasi di kelas Database tanpa harus mengulangi kode.
+      
   ```php
   class PermohonanIzin extends Database {
     // Kode untuk kelas PermohonanIzin
@@ -106,7 +107,7 @@ class ViewSuratTugas extends SuratTugas {
 
     ```
 
-5. Terapkan polimorfisme untuk minimal 2 peran sesuai studi kasus.
+### 5. Terapkan polimorfisme untuk minimal 2 peran sesuai studi kasus.
 Polimorfisme diterapkan melalui konsep overriding fungsi yang ada di kelas turunan ViewSuratTugas. Kelas ini mewarisi dari SuratTugas dan memiliki metode yang berbeda seperti displaySuratTugas(), displaySuratTugasLuarKota(), displaySuratTugasLuarNegeri(), dan displaySuratTugasInternal(). Semua metode ini melakukan hal yang sama (menampilkan data surat tugas) tetapi dengan filter atau logika yang berbeda berdasarkan keperluan:
 
 ```php
