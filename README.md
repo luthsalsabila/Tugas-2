@@ -590,4 +590,4 @@ class ViewPermohonanIzin extends PermohonanIzin {
    #### - Surat Tugas Internal
    ![image](https://github.com/user-attachments/assets/1a680fc1-2ed5-47a3-8fe8-02473aa2c9d2)
 
-   Demikian Readme dari code yang telah diberikan.
+  ### Demikian Readme dari code yang telah diberikan.
